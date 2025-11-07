@@ -1,5 +1,4 @@
-##Created by Samantha Summerfield and Maggie Phillips
-##11/6/25
+##Samantha Summerfield and Maggie Phillips
 ##HW 10
 
 
@@ -35,27 +34,33 @@ ggplot(data = DO_temp, mapping = aes(x = `Temp`, y = `DO`)) +
 
 regression_line = lm(DO_temp$DO ~ DO_temp$Temp, data = DO_temp)
 print(regression_line)
-  
+
 
 #------C-------#
 
-###Evaluate the model residuals for signs that regression assumptions are violated. You should evaluate
-###at least three assumptions and for each one state to what extent you believe it is violated and how you
-###know. You should plot figures and write your response as comments embedded in the code
+#assumptions for using a linear model: 
+# 1) residuals are normally distributed
+# 2) homoscedastic (variance is the same)
+# 3) no autocorrelation
 autoplot(regression_line)
 
-#Normally distributed
-#• Independent (no autocorrelation)
-#• Homoscedastic (variance is the same)
 hist(regression_line$residuals)
-
-#############NOT REALLY SURE WHAT ELSE TO DO HERE ########################
-
+#1) Looking at the histogram of residuals,
+#The data looks to be more or less normally distributed, with a slight skew
+#to the right. Data are relatively centered. 
+#2) Variance seems to be high everywhere and is worse at the lower end
+# of the fitted values. I don't think it's dramatic enough for this assumption
+#to be violated. It might be a result of more measurement error at lower values.
+#3) Autocorrelation might be a problem here. DO and temp values seem to depend
+# somewhat on their previous values. This is a time series, so it seems difficult
+# to get around this one.
+#the data is definitely noisy.. maybe there's another variable to consider
+#but overall, it's solid enough for environmental data
 
 #------D-------#
 # Median and 95th percentile of Temp
 x_median <- median(DO_temp$Temp)
-x_95 <- quantile(DO_temp$Temp, 0.95)
+x_95 <- quantile(DO_temp$Temp, 0.95) #at 95th percentile
 
 x_median
 x_95
@@ -92,18 +97,12 @@ ggplot(DO_temp, aes(x = Temp, y = DO)) +
   theme_minimal()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+# Our upper and lower bound for the median vs. 95% quantile actually don't 
+# have large differences between them. Normally, I would expect the 95% to 
+# have wider bounds since it is more difficult to predict further from the 
+# median. Our data is noisy all over, but especially so in the middle where
+# the data has a looping pattern. So this might be why both the median
+# and the upper and lower bound for the 95% have similar magnitude difference.
 
 
 ##-----------------------Objective 2-----------------------------##
@@ -257,4 +256,3 @@ mean(results$prediction)
 #-------G------#
 #this tells me that the intervals are accurate with the 95%, but I think 
 #more simulations will be needed to see the true errors
-
