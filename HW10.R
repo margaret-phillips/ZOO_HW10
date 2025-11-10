@@ -1,5 +1,4 @@
-##Created by Samantha Summerfield and Maggie Phillips
-##11/6/25
+##Samantha Summerfield and Maggie Phillips
 ##HW 10
 
 
@@ -107,8 +106,6 @@ ggplot(DO_temp, aes(x = Temp, y = DO)) +
 # median. Our data is noisy all over, but especially so in the middle where
 # the data has a looping pattern. So this might be why both the median
 # and the upper and lower bound for the 95% have similar magnitude difference.
-
-
 
 
 ##-----------------------Objective 2-----------------------------##
