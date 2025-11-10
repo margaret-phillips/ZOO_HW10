@@ -35,7 +35,7 @@ ggplot(data = DO_temp, mapping = aes(x = `Temp`, y = `DO`)) +
 
 regression_line = lm(DO_temp$DO ~ DO_temp$Temp, data = DO_temp)
 print(regression_line)
-  
+
 
 #------C-------#
 
@@ -257,4 +257,3 @@ mean(results$prediction)
 #-------G------#
 #this tells me that the intervals are accurate with the 95%, but I think 
 #more simulations will be needed to see the true errors
-
