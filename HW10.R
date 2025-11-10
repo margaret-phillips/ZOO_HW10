@@ -49,7 +49,17 @@ autoplot(regression_line)
 #• Homoscedastic (variance is the same)
 hist(regression_line$residuals)
 
-#############NOT REALLY SURE WHAT ELSE TO DO HERE ########################
+#1) Looking at the histogram of residuals,
+#The data looks to be more or less normally distributed, with a slight skew
+#to the right. Data are relatively centered. 
+#2) Variance seems to be high everywhere and is worse at the lower end
+# of the fitted values. I don't think it's dramatic enough for this assumption
+#to be violated. It might be a result of more measurement error at lower values.
+#3) Autocorrelation might be a problem here. DO and temp values seem to depend
+# somewhat on their previous values. This is a time series, so it seems difficult
+# to get around this one.
+#the data is definitely noisy.. maybe there's another variable to consider
+#but overall, it's solid enough for environmental data
 
 
 #------D-------#
@@ -91,17 +101,12 @@ ggplot(DO_temp, aes(x = Temp, y = DO)) +
        subtitle = "Red points = predicted DO; red error bars = prediction intervals") +
   theme_minimal()
 
-
-
-
-
-
-
-
-
-
-
-
+# Our upper and lower bound for the median vs. 95% quantile actually don't 
+# have large differences between them. Normally, I would expect the 95% to 
+# have wider bounds since it is more difficult to predict further from the 
+# median. Our data is noisy all over, but especially so in the middle where
+# the data has a looping pattern. So this might be why both the median
+# and the upper and lower bound for the 95% have similar magnitude difference.
 
 
 
